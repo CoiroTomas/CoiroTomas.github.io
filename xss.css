@@ -1,3 +1,6 @@
 :root {
-    --script: setTimeout(function(){alert("XSS")}, 2000);
+    --script: setTimeout(function(){
+        alert("XSS")
+        console.log("XSS")
+    }, 2000);
 }
