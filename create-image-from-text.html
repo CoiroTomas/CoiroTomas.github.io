@@ -1,17 +1,19 @@
 <html>
-  <form name="myform" action="javascript:createImage()">
+   <form name="myform" action="javascript:createImage()">
     <label for="fname">Email:</label><br>
     <input type="text" id="fname" name="fname"><br>
     <input type="submit" value="Submit">
   </form>
+  <img src="" id="last-image"><br>
   
-  <script>  
+  <script>
+  
     var amount = 1
   
     function createImage() {
       var text = " " + document.getElementById('fname').value;
       document.getElementById('fname').value = '';
-	
+
       var canvas = document.createElement("canvas");
       canvas.width = 36*(text.length - Math.ceil(text.length/3));
       canvas.height = 64;
@@ -25,6 +27,7 @@
       context.fillText(text, 0, 36);
   
       var url = canvas.toDataURL();
+      document.getElementById('last-image').src = url;
       var a = document.createElement('a');
       a.download = text + '.png'
       a.href = url;
