@@ -1,41 +1,40 @@
 <html>
-   <form name="myform" action="javascript:createImage()">
+  <form name="myform" action="javascript:createImage()">
     <label for="fname">Email:</label><br>
     <input type="text" id="fname" name="fname"><br>
-	<input type="submit" value="Submit">
+    <input type="submit" value="Submit">
   </form>
   
-  <script>
-  
+  <script>  
     var amount = 1
   
     function createImage() {
-	  var text = " " + document.getElementById('fname').value;
-	  document.getElementById('fname').value = '';
+      var text = " " + document.getElementById('fname').value;
+      document.getElementById('fname').value = '';
 	
       var canvas = document.createElement("canvas");
-      canvas.width = 600;
-      canvas.height = 200;
-	  
-	  var context = canvas.getContext("2d");
-	  context.fillStyle = "white";
-	  context.fillRect(0, 0, 36*(text.length - Math.ceil(text.length/3)), 64);
-	  
+      canvas.width = 36*(text.length - Math.ceil(text.length/3));
+      canvas.height = 64;
+        
+      var context = canvas.getContext("2d");
+      context.fillStyle = "white";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+  
       context.fillStyle = "grey";
       context.font = "bold 36px Arial";
       context.fillText(text, 0, 36);
-  	
-  	  var url = canvas.toDataURL();
-  	  var a = document.createElement('a');
-  	  a.download = text + '.png'
-  	  a.href = url;
-  	  a.textContent = text;
-  	  
-  	  amount = amount + 1;
+  
+      var url = canvas.toDataURL();
+      var a = document.createElement('a');
+      a.download = text + '.png'
+      a.href = url;
+      a.textContent = text;
+    
+      amount = amount + 1;
       document.body.appendChild(a);
-	  
-	  var br = document.createElement('br');
-	  a.appendChild(br);
+ 
+      var br = document.createElement('br');
+      a.appendChild(br);
     }
   </script>
 </html>
